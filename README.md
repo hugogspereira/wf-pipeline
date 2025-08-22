@@ -44,6 +44,19 @@ pip install dpkt numpy pandas scikit-learn xgboost matplotlib seaborn joblib
 ### 1. Prepare PCAP Files
 
 Place your `.pcap` files in the `data/pcaps/` directory.
+Each file must follow the naming convention:
+
+```
+x_y.pcap
+```
+
+Where:  
+- **x** – the index of the website (e.g., its rank in the Tranco Top 1000 list)  
+- **y** – the sample number for that website  
+
+Example:  
+- `5_1.pcap` → first sample of the 5th-ranked website  
+- `250_3.pcap` → third sample of the 250th-ranked website  
 
 --- 
 
