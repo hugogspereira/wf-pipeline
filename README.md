@@ -1,6 +1,6 @@
 # Website Fingerprinting Attack Framework
 
-This repository implements a machine learning pipeline for **website fingerprinting (WF) attacks** using packet capture (PCAP) data. It supports a variety of classical ML models as well as a deep learning model (TikTok).
+This repository implements a machine learning pipeline for **website fingerprinting (WF) attacks** using packet capture (PCAP) data.
 
 ---
 
@@ -9,7 +9,7 @@ This repository implements a machine learning pipeline for **website fingerprint
 ```
 data/
 ├── models/                 # Saves the models (.pkl) 
-├── pcaps/                  # !!!PUT HERE!!! the .pcap files
+├── pcaps/                  # Stores the .pcap files
 ├── results/                # Stores the metrics from the wf attacks
 src/
 ├── 1_validate_pcaps.py     # Validates and preprocesses raw PCAP files
@@ -91,7 +91,7 @@ python 3_wf_attack.py
 
 Supported models:
 
-| Model              | Notes                                         |
+| Model              | From                                          |
 | ------------------ | --------------------------------------------- |
 | GradientBoosting   | `sklearn.ensemble.GradientBoostingClassifier` |
 | DecisionTree       | `sklearn.tree.DecisionTreeClassifier`         |
