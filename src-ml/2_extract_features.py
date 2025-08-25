@@ -1357,5 +1357,5 @@ if __name__ == "__main__":
         print ("#############################")
         extract_features(sampleFolder, FEATURES_RESULT_PATH)
         
-        shutil.rmtree(sampleFolder)
+        # shutil.rmtree(sampleFolder)
         print(f"Deleted PCAP dataset folder: {sampleFolder}")

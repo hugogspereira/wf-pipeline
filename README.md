@@ -1,6 +1,6 @@
-# Website Fingerprinting Attack Framework
+# Website Fingerprinting Framework
 
-This repository implements a machine learning pipeline for **website fingerprinting (WF) attacks** using packet capture (PCAP) data.
+This repository implements a machine learning and deep learning pipeline (:warning: WIP :warning:) for **website fingerprinting (WF) attacks** using packet capture (PCAP) data.
 
 ---
 
@@ -11,11 +11,27 @@ data/
 ├── models/                 # Saves the models (.pkl) 
 ├── pcaps/                  # Stores the .pcap files
 ├── results/                # Stores the metrics from the wf attacks
-src/
+| 
+src-ml/
 ├── 1_validate_pcaps.py     # Validates and preprocesses raw PCAP files
 ├── 2_extract_features.py   # Extracts features from validated PCAPs
 ├── 3_wf_attack.py          # Trains and evaluates ML models on extracted features
+| 
+src-dl/
+├── 1_validate_pcaps.py     # Validates and preprocesses raw PCAP files
+├── 2_extract_features.py   # Extracts features (based on Wang14-style) from validated PCAPs
+├── RF/                     # Trains and evaluates based on Robust Fingerprinting model (RF) on extracted features
+    ├── img/
+    ├── RF/                 # For info, see the README.md there
+        ├── ...
+        ├── extract-list.py
+        ├── extract-all.py
+        ├── train.py
+        ├── train_10fold.py
+        ├── test.py
 ````
+
+:warning: The code is intended for research purposes ONLY! :warning:
 
 ---
 
@@ -62,8 +78,19 @@ Example:
 
 ### 2. Validate PCAPs
 
+#### Move to the correct directory:
+
+For ML:
 ```bash
-cd src
+cd src-ml
+```
+For DL:
+```bash
+cd src-dl
+```
+
+Then, validate the pcap files:
+```bash
 python 1_validate_pcaps.py
 ```
 
@@ -78,16 +105,22 @@ python 1_validate_pcaps.py
 python 2_extract_features.py
 ```
 
-* Converts validated PCAPs into numerical feature vectors suitable for ML.
-* Output is a CSV containing features and labels (website/component).
+* Converts validated PCAPs into numerical feature vectors.
+* Output is a CSV (for ML) or a WANG14 format files (for DL) containing features and labels (website/component).
 
 ---
 
 ### 4. Train and Evaluate Models
 
+#### In case of ML:
 ```bash
 python 3_wf_attack.py
 ```
+
+#### In case of DL:
+:warning: Follow the instructions presented in the README.md inside the respective model to be used.
+
+<br>
 
 Supported models:
 
@@ -102,25 +135,11 @@ Supported models:
 | NaiveBayes         | `sklearn.naive_bayes.GaussianNB`              |
 | KNN                | `sklearn.neighbors.KNeighborsClassifier`      |
 | SVM                | `sklearn.svm.SVC`                             |
----
-
-## 📊 Evaluation
-
-The framework provides thorough evaluation for classical ML models:
-
-- **Data Splitting:**  
-  Train/test split is performed **per website**, ensuring that samples from the same website do not appear in both train and test sets. This prevents over-optimistic metrics due to data leakage.
-
-- **Metrics:**  
-  - **Accuracy** – overall correctness of predictions  
-  - **Precision, Recall, F1-score** – detailed per-class performance  
-  - **Confusion Matrix** – visual overview of misclassifications
-
-- **Cross-Validation:**  
-  - Supported for ML models to assess model stability and robustness.
-
+|--------------------| --------------------------------------------- |
+| RF                 | `https://github.com/robust-fingerprinting/RF` |
 ---
 
 ## 📚 References
 
-* Feature extraction inspired by and adapted from: [**"Effective Detection of Multimedia Protocol Tunneling using Machine Learning"**](https://github.com/dmbb/MPTAnalysis/blob/master/CovertCastAnalysis/extractFeatures.py), USENIX Security Symposium, 2018.
+* Referenced for inspiring our feature extraction which was adapted from it: [**"Effective Detection of Multimedia Protocol Tunneling using Machine Learning"**](https://github.com/dmbb/MPTAnalysis/blob/master/CovertCastAnalysis/extractFeatures.py), USENIX Security Symposium, 2018.
+* Referenced for implementing the **Robust Fingerprinting (RF) model**, which inspired the deep learning architecture and training/evaluation pipeline for website fingerprinting in this repository: [**"Subverting Website Fingerprinting Defenses with Robust Traffic Representation"**](https://github.com/robust-fingerprinting/RF), USENIX Security Symposium, 2023.
