@@ -1,6 +1,6 @@
 # Website Fingerprinting Framework
 
-This repository implements a machine learning and deep learning pipeline (:warning: WIP :warning:) for **website fingerprinting (WF) attacks** using packet capture (PCAP) data.
+This repository implements a machine learning and deep learning pipeline ( :warning: WIP :warning: ) for **website fingerprinting (WF) attacks** using packet capture (PCAP) data.
 
 ---
 
@@ -29,6 +29,11 @@ src-dl/
         ├── train.py
         ├── train_10fold.py
         ├── test.py
+├── Tik_Tok/                # Trains and evaluates based on TikTok CNN model on extracted features
+    ├── ...                 
+    ├── Timing_Features/    # For info, see the README.md there
+    ├── DL_Experiments/
+    ├── LICENSE (MIT)
 ````
 
 :warning: The code is intended for research purposes ONLY! :warning:
@@ -37,7 +42,7 @@ src-dl/
 
 ## 📝 Requirements
 
-- Python 3.10+
+- Python 3.12
 - [dpkt](https://pypi.org/project/dpkt/)
 - [numpy](https://numpy.org/)
 - [pandas](https://pandas.pydata.org/)
@@ -137,9 +142,11 @@ Supported models:
 | SVM                | `sklearn.svm.SVC`                             |
 |--------------------| --------------------------------------------- |
 | RF                 | `https://github.com/robust-fingerprinting/RF` |
+| TikTok             | `https://github.com/msrocean/Tik_Tok`         |
 ---
 
 ## 📚 References
 
 * Referenced for inspiring our feature extraction which was adapted from it: [**"Effective Detection of Multimedia Protocol Tunneling using Machine Learning"**](https://github.com/dmbb/MPTAnalysis/blob/master/CovertCastAnalysis/extractFeatures.py), USENIX Security Symposium, 2018.
-* Referenced for implementing the **Robust Fingerprinting (RF) model**, which inspired the deep learning architecture and training/evaluation pipeline for website fingerprinting in this repository: [**"Subverting Website Fingerprinting Defenses with Robust Traffic Representation"**](https://github.com/robust-fingerprinting/RF), USENIX Security Symposium, 2023.
+* Referenced for implementing the **Robust Fingerprinting (RF) model**, we use the deep learning architecture and training/evaluation for website fingerprinting in this repository: [**"Subverting Website Fingerprinting Defenses with Robust Traffic Representation"**](https://github.com/robust-fingerprinting/RF), USENIX Security Symposium, 2023.
+* Referenced for implementing the **Tik-Tok model**, we use the deep learning architecture and training/evaluation for website fingerprinting in this repository: [**"Tik-Tok: The Utility of Packet Timing in Website Fingerprinting Attacks"**](https://github.com/msrocean/Tik_Tok), Proceedings on Privacy Enhancing Technologies (PoPETs), 2020.
